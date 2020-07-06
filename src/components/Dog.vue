@@ -1,7 +1,7 @@
 <template>
   <div class="dog">
-    <img :src="imgPath">
-    <h1>This dog's name is {{ name }}</h1>
+    <h1>{{ name }}</h1>
+    <router-view />
   </div>
 </template>
 
@@ -10,14 +10,12 @@ export default {
   name: 'Dog',
   data () {
     return {
-      name: this.$route.params.name,
-      imgPath: require('@/assets/' + this.$route.params.name + '.jpg')
+      name: this.$route.params.name
     }
   },
   watch: {
     $route (to, from) {
       this.name = to.params.name
-      this.imgPath = require('@/assets/' + to.params.name + '.jpg')
     }
   }
 }

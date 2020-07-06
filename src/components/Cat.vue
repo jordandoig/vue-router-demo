@@ -14,5 +14,13 @@ export default {
       imgPath: require('@/assets/' + this.$route.params.name + '.jpg')
     }
   }
+  // NOTE(jd): Without this watch in place, the name/img will not
+  //           update when navigating from one cat to another
+  // watch: {
+  //   $route (to, from) {
+  //     this.name = to.params.name
+  //     this.imgPath = require('@/assets/' + to.params.name + '.jpg')
+  //   }
+  // }
 }
 </script>

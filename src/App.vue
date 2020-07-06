@@ -7,6 +7,7 @@
         <router-link to="/dogs/Carlos">Carlos</router-link>
         <router-link to="/dogs/Tino">Tino</router-link>
       </div>
+      <button v-on:click="takeMeHome">Take Me Home</button>
       <div id="cats">
         <h4>Cats</h4>
         <router-link to="/cats/Sugar">Sugar</router-link>
@@ -18,7 +19,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    takeMeHome () {
+      this.$router.push({ name: 'Home' })
+    }
+  }
 }
 </script>
 
@@ -35,10 +41,15 @@ export default {
 footer {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 0 30%;
 }
 
 img {
   max-height: 500px;
+}
+
+button {
+  height: min-content;
 }
 </style>
