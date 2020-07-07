@@ -34,9 +34,10 @@ const router = new Router({
     },
     // Dynamic Route Matching
     {
-      path: '/dogs/:name',
+      // Regex matching, this requires 'name' to consist of letters only
+      path: '/dogs/:name([a-zA-Z]+)',
+      // Aliasing allows multiple routes to display the same component without redirecting
       alias: ['/dog/:name', '/d/:name'],
-      // name: 'Dog',
       component: Dog,
       beforeEnter (to, from, next) {
         if (knownDogs.includes(to.params.name)) {
@@ -55,6 +56,7 @@ const router = new Router({
         {
           path: 'toys',
           name: 'DogToys',
+          // Named Views assign multiple components
           components: {
             default: DogHome,
             extras: Toys
@@ -63,6 +65,7 @@ const router = new Router({
         {
           path: 'treats',
           name: 'DogTreats',
+          // Redirect to path, named route, or dynamically
           // redirect: 'toys'
           // redirect: { name: 'DogHome' }
           redirect: to => {
@@ -96,11 +99,15 @@ const router = new Router({
       name: 'MysteryDog',
       component: MysteryDog
     },
-    // Using props as a function
     {
       path: '/cats/:name',
       name: 'Cat',
       component: Cat,
+      // Props as a boolean sets all route params as props
+      // props: true,
+      // Props as an object for setting static props
+      // props: { selfCleaning: true },
+      // Using props as a function
       props: route => ({
         name: route.params.name,
         imgPath: require('@/assets/' + route.params.name + '.jpg')

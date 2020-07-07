@@ -46,7 +46,7 @@ export default {
       this.$router.push({ name: 'Home', query: { q: 'why-the-query' } })
     },
     onCompleteCallback () {
-      // log to the console on successful route
+      // log to the console on successful/aborted route
       this.$router.push('/', () => {
         console.log('It worked!')
       }, () => {
