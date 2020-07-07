@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view class="main"/>
     <footer>
       <div id="dogs">
         <h4>Dogs</h4>
         <router-link to="/dogs/Carlos">Carlos</router-link>
-        <router-link to="/dogs/Tino">Tino</router-link>
+        <router-link :to="{ name: 'DogHome', params: { name: 'Tino' }}">Tino</router-link>
       </div>
-      <button v-on:click="takeMeHome">Take Me Home</button>
+      <div>
+        <h4>All the ways Home</h4>
+        <button v-on:click="stringPath">String Path</button>
+        <button v-on:click="pathObject">Path Object</button>
+        <button v-on:click="namedRoute">Named Route</button>
+        <button v-on:click="namedWithQuery">Named With Query</button>
+        <button v-on:click="onCompleteCallback">With Complete Callback</button>
+        <button v-on:click="goBack">Back</button>
+      </div>
       <div id="cats">
         <h4>Cats</h4>
         <router-link to="/cats/Sugar">Sugar</router-link>
@@ -21,21 +29,52 @@
 export default {
   name: 'App',
   methods: {
-    takeMeHome () {
+    stringPath () {
+      // literal string path
+      this.$router.push('/')
+    },
+    pathObject () {
+      // object
+      this.$router.push({ path: '/' })
+    },
+    namedRoute () {
+      // named route
       this.$router.push({ name: 'Home' })
+    },
+    namedWithQuery () {
+      // with query, resulting in /?q=why-the-query
+      this.$router.push({ name: 'Home', query: { q: 'why-the-query' } })
+    },
+    onCompleteCallback () {
+      // log to the console on successful route
+      this.$router.push('/', () => {
+        console.log('It worked!')
+      }, () => {
+        console.log('It didn\'t work.')
+      })
+    },
+    goBack () {
+      this.$router.go(-1)
     }
   }
 }
 </script>
 
 <style>
+body {
+  height: 100vh;
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 footer {

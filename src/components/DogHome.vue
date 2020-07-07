@@ -2,12 +2,13 @@
   <div>
     <img :src="imgPath">
     <h1>This dog's name is {{ name }}</h1>
+    <p>{{ name }} likes <router-link :to="{ name: 'DogToys', params: { name }}">Toys!</router-link> </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dog',
+  name: 'DogHome',
   data () {
     return {
       name: this.$route.params.name,
