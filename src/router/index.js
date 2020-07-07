@@ -21,7 +21,7 @@ const goodDogs = [
   'Carlos'
 ]
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -110,3 +110,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log('routing queued...')
+  next()
+})
+
+router.beforeResolve((to, from, next) => {
+  console.log('routing in progress...')
+  next()
+})
+
+router.afterEach((to, from) => {
+  console.log('routing successful!')
+})
+
+export default router
