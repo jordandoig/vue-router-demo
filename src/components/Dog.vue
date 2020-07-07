@@ -1,7 +1,8 @@
 <template>
   <div class="dog">
     <h1>{{ name }}</h1>
-    <router-view />
+    <router-view/>
+    <router-view name="extras"/>
   </div>
 </template>
 

@@ -45,7 +45,10 @@ export default new Router({
         {
           path: 'toys',
           name: 'DogToys',
-          component: Toys
+          components: {
+            default: DogHome,
+            extras: Toys
+          }
         }
       ]
     },
