@@ -61,8 +61,8 @@ export default {
 </script>
 
 <style>
-body {
-  height: 100vh;
+html, body {
+  min-height: 95vh;
   padding: 5px;
 }
 
@@ -71,7 +71,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 100%;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -82,6 +82,7 @@ footer {
   justify-content: space-around;
   align-items: center;
   padding: 0 30%;
+  border-top: 1px solid black;
 }
 
 img {

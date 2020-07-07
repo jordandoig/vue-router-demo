@@ -2,7 +2,8 @@
   <div>
     <img :src="imgPath">
     <h1>This dog's name is {{ name }}</h1>
-    <p>{{ name }} likes <router-link :to="{ name: 'DogToys', params: { name }}">Toys!</router-link> </p>
+    <p>{{ name }} likes <router-link :to="{ name: 'DogToys', params: { name }}">Toys</router-link>!</p>
+    <p>And also <router-link :to="{ name: 'DogTreats', params: { name }}">treats</router-link>.</p>
   </div>
 </template>
 
