@@ -27,13 +27,16 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        logRouting: true
+      }
     },
     // Dynamic Route Matching
     {
       path: '/dogs/:name',
       alias: ['/dog/:name', '/d/:name'],
-      name: 'Dog',
+      // name: 'Dog',
       component: Dog,
       beforeEnter (to, from, next) {
         if (knownDogs.includes(to.params.name)) {
@@ -112,17 +115,23 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('routing queued...')
+  if (to.matched.some(record => record.meta.logRouting)) {
+    console.log('routing queued...')
+  }
   next()
 })
 
 router.beforeResolve((to, from, next) => {
-  console.log('routing in progress...')
+  if (to.matched.some(record => record.meta.logRouting)) {
+    console.log('routing in progress...')
+  }
   next()
 })
 
 router.afterEach((to, from) => {
-  console.log('routing successful!')
+  if (to.matched.some(record => record.meta.logRouting)) {
+    console.log('routing successful!')
+  }
 })
 
 export default router
